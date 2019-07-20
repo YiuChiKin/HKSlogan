@@ -1,0 +1,187 @@
+<html>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="lib/html2canvas.js"></script>
+<script src="lib/canvas2image.js"></script>
+<title>
+    Slogan Generators
+</title>
+<style>
+:root
+{
+    --width: 100%;
+    --height: 100%;
+    --gradientDegree: 20deg;
+    --gradientColor1: transparent;
+    --gradientColor2: rgba(0, 3, 3, 1);
+    --backgroundUrl: url("./images/peaceimage.jpg");
+    --text-color: white;
+
+    --flex-row-col: row;
+}
+
+body
+{
+    margin:0;
+    font-family:sans-serif;
+    font-weight: 900;
+
+    display: flex;
+    flex-direction: var(--flex-row-col);
+}
+
+.main_div
+{
+    /*background: black;*/
+    background-image: var(--backgroundUrl);
+    background: linear-gradient(var(--gradientDegree), var(--gradientColor2), var(--gradientColor2), var(--gradientColor1)) 0% 0% / cover,
+    var(--backgroundUrl) no-repeat;
+    background-size: cover;
+    background-position: center; 
+    width: var(--width);
+    height: var(--height);
+
+    color: var(--text-color);
+}
+
+.set_table
+{
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+
+    padding: 2rem;
+    margin: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.set_table_row
+{
+    display: flex;
+    flex-direction: row;
+}
+</style>
+
+<body>
+    <div class="main_div" id="main_div">
+        <div id="text_1">
+            香港人
+        </div>
+    </div>
+    <div class="set_table">
+        <div class="set_table_row">
+            Text
+            <input type="text" class="" id="text_input"
+            name="text_input" placeholder="Type here" value="香港人"></input>
+        </div>
+        <div class="set_table_row">
+            X:
+        </div>
+        <div class="set_table_row">
+            y:
+        </div>
+        <div class="set_table_row">
+            Text-Size:
+        </div>
+        <div class="set_table_row">
+            Text-Weight:
+        </div>
+        <div class="set_table_row">
+            image:
+        </div>
+        <div class="set_table_row">
+            color1:
+        </div>
+        <div class="set_table_row">
+            color2:
+        </div>
+        <div class="set_table_row">
+            gradient degree:
+        </div>
+        <div class="set_table_row">
+            <button onclick="save_image()">
+                Save Image
+            </button>
+        </div>
+    </div>
+    <div id="img-out"></div>
+</body>
+
+<script>
+    let isMobile = false;
+    let main_div_width = 0;
+    let main_div_height = 0;
+    let root = document.documentElement;
+
+    $('#text_input').on('keyup', function() {
+        console.log('onchange:' + $(this).val());
+	    $('#text_1').text($(this).val());
+    });
+
+    function save_image()
+    {
+        console.log('save image');
+        //print #main_div save as png/jpg
+        html2canvas($("#main_div"), {
+            onrendered: function(canvas) {
+                theCanvas = canvas;
+                //console.log(canvas);
+                document.body.appendChild(canvas);
+
+                // Convert and download as image 
+                Canvas2Image.saveAsPNG(canvas); 
+                $("#img-out").append(canvas);
+                // Clean up 
+                //document.body.removeChild(canvas);
+            }
+        });
+    }
+
+    $(document).ready()
+    {
+        console.log('onload');
+        //check the window width and height
+        let window_width = $(window).width();
+        let window_height = $(window).height();
+        //console.log(window_width);
+        //console.log(window_height);
+        //check if is mobile / computer
+        if(window_width >= window_height)
+        {
+            //computer
+            isMobile = false;
+
+            root.style.setProperty('--flex-row-col', "row");
+        }
+        else
+        {
+            isMobile = true;
+
+            root.style.setProperty('--flex-row-col', "col");
+        }
+        //fix the main div ratio (9:16)
+        main_div_width = 0;
+        main_div_height = 0;
+        console.log('isMobile:' + isMobile)
+        if(isMobile)
+        {
+            //mobile size is max-width, height dynamic
+            main_div_width = window_width;
+            main_div_height = window_width/9*16;
+        }
+        else
+        {
+            main_div_height = window_height;
+            main_div_width = window_height/16*9;
+        }
+        //set to the main_div item
+        console.log(main_div_width + "|" + main_div_height);
+        //$('#main_div').width(main_div_width + "px");
+        //$('#main_div').height(main_div_height + "px");
+
+        root.style.setProperty('--width', main_div_width + "px");
+        root.style.setProperty('--height', main_div_height + "px");
+    }
+</script>
+</html>
