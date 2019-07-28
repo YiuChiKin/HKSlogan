@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "C1": "red",
+        "c2": "orange",
+        "C3": "yellow",
+        "C4": "blue"
+    },
+    {
+        "id": 1,
+        "Text": "first item",
+        "color": "purple"
+    }
+]
