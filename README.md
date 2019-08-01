@@ -29,3 +29,22 @@
 2. set the background colors, image
 3. play text (per 2 second)
 4. Replay button (f5 page)
+
+# Todo Project
+TODO list
+- Browser based (stored in localstorage inside browser, can save as excel)
+- group of projects
+- Completed project, hide completed project, working project
+	- each project:
+	- list of 'todo'
+		- each 'todo'
+		- title, description
+		- 'todo' status:
+			- todo
+			- suspended
+			- completed
+			- completed and hide
+- History of 'todo' completed
+- List of completed project
+- Customized background, theme color (all saved on localstorage)
+- Save a project as excel and download
