@@ -4,36 +4,11 @@ body {
 	color: #fff;
 	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
-	-webkit-animation: Gradient 15s ease infinite;
-	-moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+
+  animation: Gradient 300s ease infinite;
   
   font-family: 'Segoe UI';
   font-weight: 100;
-}
-
-@-webkit-keyframes Gradient {
-	0% {
-		background-position: 0% 50%
-	}
-	50% {
-		background-position: 100% 50%
-	}
-	100% {
-		background-position: 0% 50%
-	}
-}
-
-@-moz-keyframes Gradient {
-	0% {
-		background-position: 0% 50%
-	}
-	50% {
-		background-position: 100% 50%
-	}
-	100% {
-		background-position: 0% 50%
-	}
 }
 
 @keyframes Gradient {
@@ -51,4 +26,43 @@ body {
 .todoitem {
 	display:flex;
 	flex-direction: row;
+	margin: 0.5rem;
+	padding: 1rem;
+	background: linear-gradient(to right, rgba(0, 162, 255, 0.5), rgba(0, 255, 34, 0.5));	
+	justify-content: center;
+}
+
+.Header {
+	font-size: 2rem;
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.inputitem {
+	width: 100%;
+	text-align: center;
+	font-size: 1rem;
+	margin-top: 1rem;
+
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.inputitem * {
+	margin: 1rem;
+	font-size: 1rem;
+	padding: 0.5rem;
+}
+
+.inputitem input {
+	font-size: 1.5rem;
+}
+
+.inputitem button {
+	background: linear-gradient(to left, pink, aqua);
+	border-radius: 0.5rem;
+}
+
+.TodoTable {
+	margin: 2rem;
+	background: rgba(0, 174, 255, 0);
 }

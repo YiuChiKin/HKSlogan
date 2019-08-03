@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class TodoItem extends Component {
     render() {
         let result = this.props.result;
-        return <div className="todoitem">
+        return <div className="todoitem" id={this.props.id}>
             <div>{result.text}</div>
             <div>{result.status}</div>
             <div>{result.desc}</div>

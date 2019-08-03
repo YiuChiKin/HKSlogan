@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import TodoItem from './TodoItem';
+import NewTodo from './InputTodo';
 
 class App extends Component {
   constructor(props)
@@ -16,7 +17,6 @@ class App extends Component {
           projectname: 'default project sample',
           todoList: [
             {
-              id: 1,
               text: 'sample todo item',
               status: 1,
               desc: 'any thing happen? todo description.'
@@ -30,7 +30,6 @@ class App extends Component {
           projectname: 'default project sample',
           todoList: [
             {
-              id: 1,
               text: 'sample todo item',
               status: 1,
               desc: 'any thing happen? todo description.'
@@ -45,6 +44,8 @@ class App extends Component {
         four: 'done'
       }
     };
+
+    this.AddTodoList = this.AddTodoList.bind(this);
   }
 
   componentDidMount()
@@ -81,18 +82,43 @@ class App extends Component {
     }*/
   }
 
+  AddTodoList(data)
+  {
+    //console.log(data);
+    //add to current list
+    let currentprojectitems = this.state.currentprojectitems.todoList;
+    currentprojectitems.push(            {
+      text: data,
+      status: 1,
+      desc: 'any thing happen? todo description.'
+    });
+
+    this.setState({
+      id: this.state.currentprojectitems.projectname,
+      projectname: this.state.currentprojectitems.projectname,
+      todoList: currentprojectitems
+    });
+  }
+
   render() {
-    console.log(this.state);
+    //console.log(this.state);
+    if(this.state.currentprojectitems.todoList == null)
+    {
+      return <div>Something goes wrong..</div>
+    }
     return (
       <div className="body">
         <div className="Header">
           {this.state.currentprojectitems.projectname}
         </div>
+        <NewTodo addTodo={this.AddTodoList}/>
+        <div className="TodoTable">
         {
           this.state.currentprojectitems.todoList.map((result, i) => {
-            return <TodoItem result={result}/>
+            return <TodoItem result={result} id={i}/>
           })
         }
+        </div>
       </div>
     );
   }
