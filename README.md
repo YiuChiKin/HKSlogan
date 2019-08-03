@@ -32,7 +32,7 @@
 
 # Todo Project
 TODO list
-- Browser based (stored in localstorage inside browser, can save as excel)
+- Browser based (stored in localstorage inside browser, can save as .txt)
 - group of projects
 - Completed project, hide completed project, working project
 	- each project:
@@ -47,4 +47,4 @@ TODO list
 - History of 'todo' completed
 - List of completed project
 - Customized background, theme color (all saved on localstorage)
-- Save a project as excel and download
+- Save a project as .txt and download
